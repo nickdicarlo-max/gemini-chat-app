@@ -10,15 +10,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* This is the key fix for mobile responsiveness */
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background-color: transparent; /* Makes the background transparent for embedding */
         }
         .chat-container {
-            height: 100vh;
+            height: 100%; /* Now uses 100% of the body's height */
             display: flex;
             flex-direction: column;
-            background-color: ##ffffff; /* Updated to a darker charcoal-gray */
+            background-color: #ffffff; /* Updated to a whitey */
             color: white;
             border-radius: 1rem;
             overflow: hidden;
@@ -32,14 +37,14 @@
             word-wrap: break-word; /* Ensures text wraps within the bubble */
         }
         .user-message {
-            background-color: #212121; /* A darker gray for user messages */
+            background-color: #333333; /* A darker gray for user messages */
             color: #e5e5e5;
             align-self: flex-end;
             border-bottom-right-radius: 0;
         }
         .bot-message {
             background-color: #429790; /* The signature green/teal from the website */
-            color: #1a202c;
+            color: #ffffff;
             align-self: flex-start;
             border-bottom-left-radius: 0;
         }
@@ -53,10 +58,10 @@
     <div class="chat-container">
         <!-- Chat header -->
         <div class="flex-shrink-0 p-4 border-b border-zinc-600 bg-zinc-900 text-center">
-            <h1 class="text-xl font-bold">Skateparks for Dallas Bot</h1>
+            <h1 class="text-xl font-bold">Skateparks for Dallas AI Assistant</h1>
         </div>
 
-        <!-- Message display area -->
+        <!-- Message display area - flex-grow makes this fill the remaining space -->
         <div id="chat-messages" class="flex-grow p-4 overflow-y-auto flex flex-col items-start space-y-2">
             <!-- Initial message from the bot -->
             <div class="bot-message message self-start">
@@ -75,7 +80,7 @@
 
     <script>
         // Use a placeholder URL. REMEMBER TO REPLACE THIS with your actual Google Cloud Run Service URL.
-        const apiUrl = 'https://gemini-chatbot-79047454983.us-central1.run.app/ask';
+        const apiUrl = 'https://YOUR_DEPLOYED_URL_HERE/ask';
 
         const chatMessages = document.getElementById('chat-messages');
         const userInput = document.getElementById('user-input');
